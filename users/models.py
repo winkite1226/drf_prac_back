@@ -11,6 +11,6 @@ class User(AbstractUser):
     # email : 이메일
     # date_joined : 계정이 생성된 날짜
     phone = models.IntegerField(default=0)
-    nickname = models.CharField(max_length=30)
+    nickname = models.CharField(max_length=30, default='')
     profile_img = models.ImageField(blank=True, upload_to="$Y/%m")
-    introduce = models.CharField(max_length=50)
+    introduce = models.CharField(max_length=50, default='')
