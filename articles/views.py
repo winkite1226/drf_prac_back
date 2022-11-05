@@ -92,4 +92,14 @@ class CommentDetailView(APIView):
 # 게시글 좋아요
 class LikeView(APIView):
     def post(self, request, article_id):
-        pass
+        # 게시글 가져오기
+        article = get_object_or_404(Article, id=article_id)
+        # 현재 사용자가 article의 likes 필드에 있다면
+        if request.user in article.post_like.all():
+            # 해당 사용자를 필드값에서 제거
+            article.post_like.remove(request.user)
+            return Response("like가 취소되었습니다", status=status.HTTP_200_OK)
+        else:
+            # 해당 사용자를 필드값에 추가
+            article.post_like.add(request.user)
+            return Response("like가 되었습니다", status=status.HTTP_200_OK)
