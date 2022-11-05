@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from articles.models import Article
+from articles.models import Article, Comment
 
 class ArticleSerializer(serializers.ModelSerializer):
     post_author = serializers.SerializerMethodField()
@@ -16,3 +16,13 @@ class ArticleCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
         fields = ("post_title", "post_restaurant", "post_content", "post_image")
+
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = '__all__'
+
+class CommentCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ("comment_content",)
