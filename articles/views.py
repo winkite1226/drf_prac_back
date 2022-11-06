@@ -13,11 +13,15 @@ class ArticleView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
+        print(request.user)
         serializer = ArticleCreateSerializer(data=request.data)
+        print(request.user)
         if serializer.is_valid():
+            print(request.user)
             serializer.save(post_author=request.user)
             return Response(serializer.data)
         else:
+            print(request.user)
             return Response(serializer.errors) 
 
 # 게시글 상세보기/수정하기/삭제하기
