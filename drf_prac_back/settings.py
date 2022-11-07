@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 
     'users',
     'articles',
+    'recommend',
 ]
 
 MIDDLEWARE = [
